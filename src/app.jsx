@@ -7,18 +7,21 @@ class Description extends React.Component {
 
             this.state = {
                 data: [],
-                query: 'http://localhost:3004/Description/1726a68c-1ab1-11ea-b9fe-332f5417770f'
+                query: '17264ec6'
             }
         }
         
         componentDidMount(){
-            console.log(this.state.query)
-            this.getDescription()
+           window.addEventListener('query',(e) => {
+               this.setState({query: e.detail})
+               this.getDescription(this.state.query)
+           })
+            this.getDescription(this.state.query);
         }
 
 
-        getDescription(){
-            Axios.get(this.state.query)
+        getDescription(query){
+            Axios.get(`http://localhost:3004/Description/${query}`)
             .then(({data}) => {
                 console.log(data)
                 this.setState({data: data})
@@ -29,27 +32,23 @@ class Description extends React.Component {
 
         render() {
             return (
-            <div className="wrap-collapsible">
-                <img className="info-circle" src='https://cdn.pixabay.com/photo/2012/04/24/23/56/information-41225_960_720.png'/>
-                <input id="collapsible" className="toggle" type="checkbox"/>
-                <label htmlFor="collapsible" className="lbl-toggle">Description</label>   
-            <div className="collapsible-content"> 
-                {this.state.data.map((el, index) => {
-                    return(
-                        <div className="content-inner" key={index}> 
-                        <p>
-                        {el.info} 
-                        </p>
-                        </div>
-                    )
-                })}
-            </div>
-                <hr className="div"></hr>
-            </div>
-        
+                <div className="desc-wrap-collapsible">
+                    <input id="collapsible" className="desc-toggle" type="checkbox"/>
+                    <label htmlFor="collapsible" className="desc-lbl-toggle">Description</label>   
+                    <div className="desc-collapsible-content"> 
+                        {this.state.data.map((el, index) => {
+                            return(
+                                <div className="desc-content-inner" key={index}> 
+                                    <p>
+                                        {el.info} 
+                                    </p>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
         )
-    };
-    
+    };    
 };
     
 export default Description;

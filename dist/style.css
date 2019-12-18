@@ -1,69 +1,61 @@
-.wrap-collabsible {
-    margin-bottom: 1.2rem 0;
-  }
-  
+
    input[type='checkbox'] {
     display: none;
   }
   
-  .lbl-toggle {
+  .desc-lbl-toggle {
     display: block;
-  
     font-weight: bold;
     font-family: monospace;
     font-size: 1.2rem;
     text-transform: uppercase;
     text-align: center;
-  
     padding: 1rem;
-  
     color: #000000;
     background: #455847;
-  
     cursor: pointer;
-  
     border-radius: 7px;
     transition: all 0.25s ease-out;
   }
   
-  .lbl-toggle:hover {
+  .desc-lbl-toggle:hover {
     color: #905f59;
   }
   
-  .lbl-toggle::before {
+  .desc-lbl-toggle::before {
     content: ' ';
     display: inline-block;
-  
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 5px solid currentColor;
     vertical-align: middle;
     margin-right: .7rem;
     transform: translateY(-2px);
-  
     transition: transform .2s ease-out;
   }
   
-  .toggle:checked + .lbl-toggle::before {
-    transform: rotate(90deg) translateX(-3px);
-  }
-  
-  .collapsible-content {
+  .desc-collapsible-content {
     max-height: 0px;
     overflow: hidden;
     transition: max-height .25s ease-in-out;
   }
   
-  .toggle:checked + .lbl-toggle + .collapsible-content {
-    max-height: 100vh;
+  .desc-toggle:checked + .desc-lbl-toggle + .desc-collapsible-content {
+    max-height: fit-content;
   }
   
-  .toggle:checked + .lbl-toggle {
+  .desc-toggle:checked + .desc-lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+  }
+  
+  
+  
+  .desc-toggle:checked + .desc-lbl-toggle {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
   
-  .collapsible-content .content-inner {
+  .desc-collapsible-content .desc-content-inner {
       font-size: 14px;
     background: #f3db99;
     border-bottom: 1px solid rgba(250, 224, 66, .45);
@@ -72,16 +64,4 @@
     padding: .5rem 1rem;
   } 
 
-.info-circle{
-    width: 35px;
-    height: 35px;
-    position: relative;
-    top: 48px;
-    left:10px;
-}
 
-.div{
-    position: relative;
-    bottom: 7px;
-
-}

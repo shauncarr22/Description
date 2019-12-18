@@ -1,6 +1,8 @@
-CREATE DATABASE productinfo;
+DROP DATABASE IF EXISTS productinfo2;
 
-USE productinfo;
+CREATE DATABASE productinfo2;
+
+USE productinfo2;
 
 -- CREATE TABLE products (id VARCHAR(36), PRODUCT_NAME VARCHAR(50), rating int, info(text))
 CREATE TABLE information (

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const server = express();
 const mysql = require('mysql');
+const path = require('path');
 const bodyParser = require('body-parser');
 const port = 3004;
 const connection = require('./config');
@@ -20,6 +21,10 @@ connection.connect((err) => {
         console.log('connection successful')
     }
 });
+
+server.get('/getDes', (req,res) => {
+    res.sendFile(path.join(`${__dirname}/../dist/bundle.js`))
+})
 
 server.get('/Description/:id', (req, res) => {
     connection.query(`SELECT * FROM information WHERE id = '${req.params.id}';`, (err, results) => {
@@ -48,6 +53,7 @@ server.get('/Description/:id', (req, res) => {
 
 
 
-server.listen(port, () => {
+server.listen(port, (err) => {
+    if(err) console.error(err)
     console.log(`listening on port${port}`)
 })
